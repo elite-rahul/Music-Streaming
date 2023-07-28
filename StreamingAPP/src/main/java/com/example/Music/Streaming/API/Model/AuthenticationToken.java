@@ -24,9 +24,6 @@ public class AuthenticationToken {
     @OneToOne
     @JoinColumn(name = "fk_user_Id")
     User user;
-
-
-    //create a parameterized constructor which takes user as an argument
     public AuthenticationToken(User user)
     {
         this.user = user;
