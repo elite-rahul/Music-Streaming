@@ -6,8 +6,8 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EmailHandler {
-    private static final String EMAIL_USERNAME ="priyamukherjee468@@gmail.com";
-    private static final String EMAIL_PASSWORD ="swhlvumebgynauap";
+    private static final String EMAIL_USERNAME ="sikroharrahul@gmail.com";
+    private static final String EMAIL_PASSWORD ="Rahul@321";
 
 
     public static void sendEmail(String toEmail, String subject, String body) throws MessagingException {
