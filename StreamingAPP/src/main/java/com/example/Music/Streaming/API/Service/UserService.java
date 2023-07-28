@@ -97,10 +97,6 @@ public class UserService {
             return signInStatusMessage;
 
         }
-
-        //match passwords :
-
-        //hash the password: encrypt the password
         try {
             String encryptedPassword = PasswordEncrypter.encryptPassword(signInInput.getPassword());
             if (existingUser.getPassword().equals(encryptedPassword)) {
