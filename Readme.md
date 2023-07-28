@@ -18,7 +18,72 @@ The following dependencies are required to run the project:
  ----
 ## Language used
 * Java (Version: 17)
+* 
 ----
+
+Sure, let's create a simplified version of a Music Streaming API using Spring Boot. We'll focus on the core functionalities related to users, playlists, and songs. For brevity, we won't include authentication and role-based access control in this example.
+
+Framework Used
+Spring Boot
+Dependencies
+To keep things simple, we'll only use the following dependencies:
+
+Spring Web
+Spring Data JPA
+H2 Database (in-memory database for testing)
+Language Used
+Java (Version: 17)
+Data Model
+We will have three main entities: User, Playlist, and Song. Here's how the data models will look:
+
+User Model:
+java
+Copy code
+public class User {
+    private Long id;
+    private String username;
+    private String email;
+    // Other user properties, such as password (it should be hashed and not shown here for security).
+}
+Playlist Model:
+java
+Copy code
+public class Playlist {
+    private Long id;
+    private String playlistName;
+    private List<Song> songs;
+    private User user; // The user who owns this playlist.
+}
+Song Model:
+java
+Copy code
+public class Song {
+    private Long id;
+    private String songTitle;
+    private String artist;
+    private User user; // The user who uploaded this song.
+}
+API Endpoints
+We'll create API endpoints to perform CRUD operations on users, playlists, and songs.
+
+User Endpoints:
+
+POST /users: Create a new user.
+GET /users/{id}: Get user details by ID.
+PUT /users/{id}: Update user details by ID.
+DELETE /users/{id}: Delete a user by ID.
+Playlist Endpoints:
+
+POST /playlists: Create a new playlist.
+GET /playlists/{id}: Get playlist details by ID.
+PUT /playlists/{id}: Update playlist details by ID.
+DELETE /playlists/{id}: Delete a playlist by ID.
+Song Endpoints:
+
+POST /songs: Upload a new song.
+GET /songs/{id}: Get song details by ID.
+PUT /songs/{id}: Update song details by ID.
+DELETE /songs/{id}: Delete a song by ID.
 
 ## Data Model
 
@@ -46,24 +111,34 @@ SongId : Long
 SongTitle : String
 Artist : String 
 user: User
+
+* Structure of project
+* *- src/
+  - main/
+    - java/
+      - com.example.musicstreaming/
+        - controller/
+          - UserController.java
+          - PlaylistController.java
+          - SongController.java
+        - model/
+          - User.java
+          - Playlist.java
+          - Song.java
+        - repository/
+          - UserRepository.java
+          - PlaylistRepository.java
+          - SongRepository.java
+        - service/
+          - UserService.java
+          - PlaylistService.java
+          - SongService.java
+        - MusicStreamingApplication.java
+
+
 ```
 
 
-* Authentication Token
-```
-tokenId : Long
-tokenValue : string
-tokenCreationDateTime : LocalDate
-@OneToOne 
-user : User
-```
-
-* Role 
-```
-Enum: ADMIN, 
-      NORMAL
-
-```
 
 ## Data Flow
 
@@ -83,19 +158,11 @@ Enum: ADMIN,
 We have used Persistent database to implement CRUD Operations.
 ```
 ---
-## Documentation
-
-implement a Music Streaming application using Spring Boot. The code you shared includes several controller classes (PlayListController, UserController, SongController) and other supporting classes (DTOs, models, repositories, services).
-
-Here is a breakdown of the code you provided:
-
-1. `PlayListController` class: This class is a Spring RestController that handles HTTP requests related to playlists. 
-2. `SongController` class: This class is a Spring RestController that handles HTTP requests related to songs. It has methods for getting all songs.
-3. `UserController` class: This class is a Spring RestController that handles HTTP requests related to user. It has a method for making CRUD Operations for song,playlist.In this controller User can Sign In,Signup and SignOut successfully.
-4. `DTOs (Data Transfer Objects)`: These classes (`SignInInput`, `SignInOutput`, `SignUpInput`, `SignUpOutput`) represent the data transferred between the client and server. They contain fields and annotations for data validation.
-5. `Models`: These classes (`AuthenticationToken`, `PlayList`, `Role`, `Song`, `User`) represent the entities in your application. They are annotated with JPA annotations to define the database schema.
-6. `Repositories`: These interfaces (`IPlayListRepo`, `ISongRepo`, `IAuthTokenRepo`, `IUserRepo`) extend the Spring Data JPA `JpaRepository` interface and provide methods for interacting with the database.
-7. `Services`: These classes (`PlayListService`, `UserService`, `SongService`, `AuthenticationService`, `UserService`) contain the business logic of your application. They use the repositories to perform CRUD operations on the entities.
+Please note that this is a simplified version of a Music Streaming API for demonstration purposes. In a real-world scenario, you would need to consider security, authentication, authorization, pagination, and error handling, among other things. Additionally, you could use a more robust database like MySQL or PostgreSQL for production use.
 
 
-   ##### Overall, the code structure follows the MVC (Model-View-Controller) pattern commonly used in Spring Boot applications. The controllers handle HTTP requests, the services handle the business logic, and the repositories handle the database operations.
+
+
+
+you can visit for testing the API SWagger Link
+http://13.127.113.144:8080/swagger-ui/index.html#/
